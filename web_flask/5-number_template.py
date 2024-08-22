@@ -4,6 +4,8 @@ starts a Flask web application
 """
 
 from flask import Flask
+from flask import render_template_string
+from flask import abort
 app = Flask(__name__)
 
 
@@ -35,7 +37,21 @@ def pythoniscool(text='is cool'):
 @app.route('/number/<int:n>', strict_slashes=False)
 def imanumber(n):
     """display “n is a number” only if n is an integer"""
-    return "{:d} is a number".format(n)
+    return f"{n} is a number"
+
+
+@app.route('/number_template/<int:n>', strict_slashes=False)
+def number_template(n):
+    """renders a template"""
+    return render_template_string('''
+        <!DOCTYPE html>
+        <html lang="eng">
+            <head><title>HBNB</title></head>
+            <body>
+                <h1>Number: {{ n }}</h1>
+            </body>
+        </html>
+        ''', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000')
