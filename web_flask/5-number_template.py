@@ -4,7 +4,7 @@ starts a Flask web application
 """
 
 from flask import Flask
-from flask import render_template_string
+from flask import render_template
 from flask import abort
 app = Flask(__name__)
 
@@ -43,7 +43,7 @@ def imanumber(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """renders a template"""
-    return render_template_string('5-number.html', n=n)
+    return render_template('5-number.html', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000')
