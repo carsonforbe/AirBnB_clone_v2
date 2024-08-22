@@ -43,15 +43,7 @@ def imanumber(n):
 @app.route('/number_template/<int:n>', strict_slashes=False)
 def number_template(n):
     """renders a template"""
-    return render_template_string('''
-        <!DOCTYPE html>
-        <html lang="eng">
-            <head><title>HBNB</title></head>
-            <body>
-                <h1>Number: {{ n }}</h1>
-            </body>
-        </html>
-        ''', n=n)
+    return render_template_string('5-number.html', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='5000')
